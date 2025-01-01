@@ -1,0 +1,54 @@
+inherited FormClient_iPhone55in: TFormClient_iPhone55in
+  ClientHeight = 394
+  ClientWidth = 736
+  DesignerMasterStyle = 0
+  inherited Header: TToolBar
+    Size.Width = 736.000000000000000000
+    Size.Height = 44.000000000000000000
+    inherited HeaderLabel: TLabel
+      Size.Width = 736.000000000000000000
+      Size.Height = 44.000000000000000000
+    end
+  end
+  inherited Footer: TToolBar
+    Position.Y = 350.000000000000000000
+    Size.Width = 736.000000000000000000
+    Size.Height = 44.000000000000000000
+  end
+  inherited Image1: TImage
+    MultiResBitmap.Height = 348
+    MultiResBitmap.Width = 1900
+    Size.Width = 736.000000000000000000
+  end
+  inherited Panel1: TPanel
+    Position.Y = 101.000000000000000000
+    Size.Width = 736.000000000000000000
+    inherited EditDataSize: TEdit
+      Size.Height = 30.000000000000000000
+    end
+    inherited EditServerIP: TEdit
+      Size.Height = 30.000000000000000000
+    end
+    inherited EditLoop: TEdit
+      Size.Height = 30.000000000000000000
+    end
+  end
+  inherited StringGridResults: TStringGrid
+    Size.Width = 736.000000000000000000
+    Size.Height = 65.000000000000000000
+    Viewport.Width = 736.000000000000000000
+    Viewport.Height = 65.000000000000000000
+    inherited StringColumn1: TStringColumn
+      Size.Width = 50.000000000000000000
+    end
+    inherited StringColumn2: TStringColumn
+      Size.Width = 130.000000000000000000
+    end
+    inherited StringColumn3: TStringColumn
+      Size.Width = 90.000000000000000000
+    end
+    inherited StringColumn4: TStringColumn
+      Size.Width = 90.000000000000000000
+    end
+  end
+end

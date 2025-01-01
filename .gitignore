@@ -1,0 +1,34 @@
+# Ignorar directorios generados por el compilador
+Win32/
+Win64/
+OSX64/
+OSXARM64/
+Android/
+Android64/
+iOSDevice64/
+Linux64/
+
+# Ignorar binarios y archivos generados automáticamente
+*.exe
+*.dll
+*.bpl
+*.dcu
+*.~*
+*.stat
+
+# Ignorar archivos de configuración local y de respaldo
+*.local
+*.identcache
+*.projdata
+*.tvsconfig
+*.dsk
+__history/
+__recovery/
+
+# Incluir archivos esenciales del proyecto
+!*.pas
+!*.dpr
+!*.dfm
+!*.fmx
+!*.dpk
+

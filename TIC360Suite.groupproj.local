@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/12/30 21:42:33.000.670,T:\ProjectGroup1.groupproj=T:\TIC360 Network Performance\TIC360Suite.groupproj</Transaction>
+  </Transactions>
+	<Default.Personality>
+		<Projects ActiveProject="T:\TIC360 Network Performance\TIC360NPClient.dproj"/>
+	</Default.Personality>
+</BorlandProject>

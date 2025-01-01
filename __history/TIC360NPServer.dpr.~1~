@@ -1,0 +1,14 @@
+program HeaderFooterApplication;
+
+uses
+  System.StartUpCopy,
+  FMX.Forms,
+  HeaderFooterTemplate in 'HeaderFooterTemplate.pas' {FormServer};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TFormServer, FormServer);
+  Application.Run;
+end.

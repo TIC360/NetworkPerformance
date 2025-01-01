@@ -31,4 +31,7 @@ __recovery/
 !*.dfm
 !*.fmx
 !*.dpk
-!Win32/Release/TIC360NPClient.exe
+!/Win32/Release/TIC360NPClient.exe
+!Win32/Release/TIC360NPServer.exe
+!Android64/Release/TIC360NPClient/bin/TIC360NPClient.apk
+!Android64/Release/TIC360NPServer/bin/TIC360NPServer.apk

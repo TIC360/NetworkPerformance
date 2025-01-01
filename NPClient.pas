@@ -45,10 +45,8 @@ implementation
 
 {$R *.fmx}
 {$R *.Macintosh.fmx MACOS}
-{$R *.Surface.fmx MSWINDOWS}
 {$R *.iPhone55in.fmx IOS}
 {$R *.LgXhdpiTb.fmx ANDROID}
-{$R *.Windows.fmx MSWINDOWS}
 
 procedure TFormClient.FormCreate(Sender: TObject);
 begin

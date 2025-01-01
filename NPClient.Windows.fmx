@@ -19,12 +19,42 @@ inherited FormClient_Windows: TFormClient_Windows
   end
   inherited Panel1: TPanel
     Size.Width = 640.000000000000000000
+    Size.Height = 104.000000000000000000
+    inherited EditDataSize: TEdit
+      Position.X = 364.000000000000000000
+      Position.Y = 8.000000000000000000
+    end
+    inherited EditServerIP: TEdit
+      Position.X = 105.000000000000000000
+    end
+    inherited Label1: TLabel
+      Position.Y = 16.000000000000000000
+      Size.Width = 81.000000000000000000
+    end
+    inherited Label2: TLabel
+      Position.X = 275.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 81.000000000000000000
+    end
+    inherited BtnRunTest: TButton
+      Position.X = 551.000000000000000000
+      Position.Y = 57.000000000000000000
+    end
+    inherited EditLoop: TEdit
+      Position.X = 551.000000000000000000
+      Position.Y = 8.000000000000000000
+    end
+    inherited Label3: TLabel
+      Position.X = 462.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 81.000000000000000000
+    end
   end
   inherited StringGridResults: TStringGrid
     Size.Width = 640.000000000000000000
-    Size.Height = 143.000000000000000000
+    Size.Height = 223.000000000000000000
     Viewport.Width = 640.000000000000000000
-    Viewport.Height = 143.000000000000000000
+    Viewport.Height = 223.000000000000000000
     inherited StringColumn1: TStringColumn
       Size.Width = 50.000000000000000000
     end

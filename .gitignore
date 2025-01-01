@@ -1,10 +1,10 @@
 # Ignorar directorios generados por el compilador
-Win32/
+#Win32/
 Win64/
 OSX64/
 OSXARM64/
 Android/
-Android64/
+#Android64/
 iOSDevice64/
 Linux64/
 
@@ -31,4 +31,3 @@ __recovery/
 !*.dfm
 !*.fmx
 !*.dpk
-

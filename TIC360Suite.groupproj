@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{2812B3D0-9188-4D9F-8D9C-C26E44DB6E45}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="TIC360NPServer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TIC360NPClient.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TIC360NPConsole.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TIC360NPServer">
+        <MSBuild Projects="TIC360NPServer.dproj"/>
+    </Target>
+    <Target Name="TIC360NPServer:Clean">
+        <MSBuild Projects="TIC360NPServer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TIC360NPServer:Make">
+        <MSBuild Projects="TIC360NPServer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TIC360NPClient">
+        <MSBuild Projects="TIC360NPClient.dproj"/>
+    </Target>
+    <Target Name="TIC360NPClient:Clean">
+        <MSBuild Projects="TIC360NPClient.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TIC360NPClient:Make">
+        <MSBuild Projects="TIC360NPClient.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TIC360NPConsole">
+        <MSBuild Projects="TIC360NPConsole.dproj"/>
+    </Target>
+    <Target Name="TIC360NPConsole:Clean">
+        <MSBuild Projects="TIC360NPConsole.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TIC360NPConsole:Make">
+        <MSBuild Projects="TIC360NPConsole.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TIC360NPServer;TIC360NPClient;TIC360NPConsole"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TIC360NPServer:Clean;TIC360NPClient:Clean;TIC360NPConsole:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TIC360NPServer:Make;TIC360NPClient:Make;TIC360NPConsole:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

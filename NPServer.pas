@@ -145,7 +145,7 @@ begin
   StringGridResults.RowCount := StringGridResults.RowCount + 1;
   StringGridResults.Cells[0, StringGridResults.RowCount - 1] := IntToStr(Num);
   StringGridResults.Cells[1, StringGridResults.RowCount - 1] := ClientIP;
-  StringGridResults.Cells[2, StringGridResults.RowCount - 1] := FormatFloat('#,##0', DataSize / 1_048_576);
+  StringGridResults.Cells[2, StringGridResults.RowCount - 1] := FormatFloat('#,##0', DataSize / 1_000_000);
   StringGridResults.Cells[3, StringGridResults.RowCount - 1] := FormatFloat('#,##0', Bandwidth);
   StringGridResults.Cells[4, StringGridResults.RowCount - 1] := FormatFloat('0.00', Duration);
 end;

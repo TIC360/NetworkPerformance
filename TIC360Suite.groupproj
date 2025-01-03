@@ -9,6 +9,9 @@
         <Projects Include="TIC360NPClient.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="TIC360NPConsole.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +38,23 @@
     <Target Name="TIC360NPClient:Make">
         <MSBuild Projects="TIC360NPClient.dproj" Targets="Make"/>
     </Target>
+    <Target Name="TIC360NPConsole">
+        <MSBuild Projects="TIC360NPConsole.dproj"/>
+    </Target>
+    <Target Name="TIC360NPConsole:Clean">
+        <MSBuild Projects="TIC360NPConsole.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TIC360NPConsole:Make">
+        <MSBuild Projects="TIC360NPConsole.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="TIC360NPServer;TIC360NPClient"/>
+        <CallTarget Targets="TIC360NPServer;TIC360NPClient;TIC360NPConsole"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="TIC360NPServer:Clean;TIC360NPClient:Clean"/>
+        <CallTarget Targets="TIC360NPServer:Clean;TIC360NPClient:Clean;TIC360NPConsole:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="TIC360NPServer:Make;TIC360NPClient:Make"/>
+        <CallTarget Targets="TIC360NPServer:Make;TIC360NPClient:Make;TIC360NPConsole:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

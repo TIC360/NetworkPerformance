@@ -3617,8 +3617,8 @@ object FormServer: TFormServer
     TabOrder = 2
     RowCount = 0
     Options = [AlternatingRowBackground, ColumnResize, ColLines, RowLines, RowSelect, AlwaysShowSelection, Header, HeaderClick, AutoDisplacement]
-    Viewport.Width = 374.000000000000000000
-    Viewport.Height = 410.000000000000000000
+    Viewport.Width = 370.000000000000000000
+    Viewport.Height = 385.000000000000000000
     object StringColumn1: TStringColumn
       HeaderSettings.TextSettings.WordWrap = False
       Size.Width = 50.000000000000000000

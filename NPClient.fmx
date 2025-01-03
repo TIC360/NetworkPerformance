@@ -3643,6 +3643,7 @@ object FormClient: TFormClient
     object EditLoop: TEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       TabOrder = 2
+      KeyboardType = NumberPad
       Position.X = 177.000000000000000000
       Position.Y = 88.000000000000000000
       Size.Width = 81.000000000000000000

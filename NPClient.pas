@@ -44,9 +44,6 @@ var
 implementation
 
 {$R *.fmx}
-{$R *.Macintosh.fmx MACOS}
-{$R *.iPhone55in.fmx IOS}
-{$R *.LgXhdpiTb.fmx ANDROID}
 
 procedure TFormClient.FormCreate(Sender: TObject);
 begin
@@ -54,7 +51,7 @@ begin
   // Configurar StringGrid
   StringGridResults.RowCount := 0; // Inicializa con una fila para encabezados
   StringGridResults.Columns[0].Header := 'N°';
-  StringGridResults.Columns[1].Header := 'Datos (MB)';
+  StringGridResults.Columns[1].Header := 'Datos (Mb)';
   StringGridResults.Columns[2].Header := 'BW (Mbps)';
   StringGridResults.Columns[3].Header := 'Tiempo (Seg)';
 end;
@@ -64,9 +61,20 @@ var
   ServerIP: string;
   DataSizeMB, LoopCount, i: Integer;
 begin
+  // Validar entradas
+  if not TryStrToInt(EditDataSize.Text, DataSizeMB) then
+  begin
+    ShowMessage('El tamaño de datos debe ser un número válido.');
+    Exit;
+  end;
+
+  if not TryStrToInt(EditLoop.Text, LoopCount) then
+  begin
+    ShowMessage('El número de repeticiones debe ser un número válido.');
+    Exit;
+  end;
+
   ServerIP := EditServerIP.Text;
-  DataSizeMB := StrToInt(EditDataSize.Text);
-  LoopCount := StrToIntDef(EditLoop.Text, 1); // Obtener el número de repeticiones (predeterminado: 1)
 
   for i := 1 to LoopCount do
   begin
@@ -88,21 +96,43 @@ begin
     TCPClient.Host := ServerIP;
     TCPClient.Port := 5201;
 
-    TCPClient.Connect;
+    try
+      TCPClient.Connect;
+    except
+      on E: Exception do
+      begin
+        ShowMessage('Error al conectar con el servidor: ' + E.Message);
+        Exit;
+      end;
+    end;
 
     // Crear un buffer de 1 MB
-    BufferSize := 1024 * 1024; // 1 MB
+    BufferSize := 1000 * 1000; // 1 MB (decimal estándar)
     SetLength(DataToSend, BufferSize);
     FillChar(DataToSend[0], BufferSize, 0); // Rellenar con ceros
 
-    TotalBytes := 0;
+    TotalBytes := DataSizeMB * BufferSize;
+
+    // **Enviar el tamaño total del paquete primero**
+    TCPClient.IOHandler.WriteLn(IntToStr(TotalBytes)); // Enviar tamaño total al servidor
+
     Stopwatch := TStopwatch.StartNew;
 
     // Enviar datos en bloques hasta alcanzar el tamaño especificado
-    while TotalBytes < DataSizeMB * BufferSize do
+    while TotalBytes > 0 do
     begin
-      TCPClient.IOHandler.Write(DataToSend, Length(DataToSend)); // Enviar buffer
-      Inc(TotalBytes, Length(DataToSend)); // Acumular bytes enviados
+      // Asegurarse de no enviar más datos de los que restan
+      if TotalBytes >= BufferSize then
+      begin
+        TCPClient.IOHandler.Write(DataToSend, BufferSize); // Enviar bloque completo
+        Dec(TotalBytes, BufferSize);
+      end
+      else
+      begin
+        SetLength(DataToSend, TotalBytes); // Ajustar el último bloque
+        TCPClient.IOHandler.Write(DataToSend, TotalBytes);
+        TotalBytes := 0;
+      end;
     end;
 
     Stopwatch.Stop;
@@ -110,25 +140,26 @@ begin
     // Calcular duración y ancho de banda
     Duration := Stopwatch.Elapsed.TotalSeconds; // Duración en segundos
     if Duration > 0 then
-      Bandwidth := (TotalBytes * 8) / (Duration * 1_000_000) // Calcular Mbps
+      Bandwidth := (DataSizeMB * 8) / Duration // Calcular Mbps
     else
       Bandwidth := 0;
 
     // Mostrar estadísticas en el StringGrid
     Inc(ProcedureCount);
-    AddResultToGrid(ProcedureCount, TotalBytes, Bandwidth, Duration);
+    AddResultToGrid(ProcedureCount, DataSizeMB * BufferSize, Bandwidth, Duration);
   finally
     TCPClient.Disconnect;
     TCPClient.Free;
   end;
 end;
 
+
 procedure TFormClient.AddResultToGrid(Num: Integer; DataSize: Int64; Bandwidth: Double; Duration: Double);
 begin
   StringGridResults.RowCount := StringGridResults.RowCount + 1;
   StringGridResults.Cells[0, StringGridResults.RowCount - 1] := IntToStr(Num);
-  StringGridResults.Cells[1, StringGridResults.RowCount - 1] := FormatFloat('#,##0', DataSize / 1_048_576);
-  StringGridResults.Cells[2, StringGridResults.RowCount - 1] := FormatFloat('#,##0', Bandwidth);
+  StringGridResults.Cells[1, StringGridResults.RowCount - 1] := FormatFloat('#,##0', DataSize / 1_000_000);
+  StringGridResults.Cells[2, StringGridResults.RowCount - 1] := FormatFloat('#,##0.00', Bandwidth);
   StringGridResults.Cells[3, StringGridResults.RowCount - 1] := FormatFloat('0.00', Duration);
 end;
 
